@@ -1,0 +1,43 @@
+<!-- add_product.html -->
+{% extends 'products/product/base.html' %}
+
+{% block content %}
+  <h2>Add Product</h2>
+<!-- product_create.html -->
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <label for="brand">Brand:</label>
+  <input type="text" id="brand" name="brand"><br>
+
+  <label for="model">Model:</label>
+  <input type="text" id="model" name="model"><br>
+
+  <label for="price">Price:</label>
+  <input type="number" id="price" name="price"><br>
+
+  <label for="description">Description:</label>
+  <textarea id="description" name="description"></textarea><br>
+
+  <label for="category">Category:</label>
+  <select id="category" name="category">
+    {% for category in categories %}
+      <option value="{{ category.id }}">{{ category.name }}</option>
+    {% endfor %}
+  </select><br>
+
+  <label for="author">Author:</label>
+  <select id="author" name="author">
+    {% for author in authors %}
+      <option value="{{ author.id }}">{{ author.first_name }} {{ author.last_name }}</option>
+    {% endfor %}
+  </select><br>
+
+  <label for="photo">Photo:</label>
+  <input type="file" id="photo" name="photo"><br>
+
+  <input type="submit" value="Create">
+</form>
+
+
+
+{% endblock %}
